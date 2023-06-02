@@ -82,12 +82,12 @@ if __name__ == '__main__':
         prog='metadataeditor',
         description='Metadata Editor',
         epilog='by Andrew lathama Latham')
-    groupa = theparser.add_mutually_exclusive_group(required=True)
+    groupa = theparser.add_mutually_exclusive_group()
     groupa.add_argument(
         '-s', '--show', action='store_true', help='Show Metadata')
     groupa.add_argument(
         '-c', '--change', action='store_true', help='Change Metadata')
-    groupb = theparser.add_mutually_exclusive_group(required=True)
+    groupb = theparser.add_mutually_exclusive_group()
     groupb.add_argument(
         '-f', '--filename', help='Single Filename')
     groupb.add_argument(
@@ -119,3 +119,5 @@ if __name__ == '__main__':
                 #changeallmetadata('/media/media/media/')
             else:
                 print('Directory not found')
+    if args.version:
+        print(VERSION)
