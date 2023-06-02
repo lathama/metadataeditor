@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 """
-Metadata Editor or Cleanup tool
+Metadata Editor
+by Andrew lathama Latham
 
 For files in an input directory:
 * Set the editor/creator metadata
@@ -10,7 +11,6 @@ Use cases:
 * Correct titles of ripped DVDs
 * Rename titles for DLNA client/server usage
 * Version via editor/creator metadata
-
 """
 
 import argparse
@@ -20,9 +20,9 @@ import sys
 sys.path.insert(0, 'mutagen-1.46.0-py3-none-any.whl')
 import mutagen # pylint: disable=import-error,wrong-import-position
 
-VERSION = 'Mediaeditor v1.0'
+VERSION = 'Metadata Editor v1.0'
 DEFAULT_TYPE = 'mp4'
-DEFAULT_TOOL = 'MediaEditor V1.0'
+DEFAULT_TOOL = 'Metadata Editor v1.0'
 
 def showmetadata(filename):
     """
