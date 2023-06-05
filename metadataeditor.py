@@ -17,6 +17,7 @@ import argparse
 import glob
 import os
 import sys
+import unittest
 sys.path.insert(0, 'mutagen-1.46.0-py3-none-any.whl')
 import mutagen # pylint: disable=import-error,wrong-import-position
 
@@ -77,23 +78,46 @@ def medianamecleanup(filename):
     cleanedname = cleanedname.split('.')[0]
     return cleanedname
 
+class Testmetadataeditor(unittest.TestCase):
+    """
+    Unit testing just a few functions because reasons
+    """
+    def setUp(self):
+        """
+        Setup some useful variables
+        """
+        self.filename_good = 'my_movie.mp4'
+        self.filename_bad = 'my.movie.mp4_.mp4'
+        self.filename_result_good = 'my movie'
+
+    def test_medianamecleanup(self):
+        """
+        Test the filenames are as expected
+        """
+        self.assertEqual(
+            medianamecleanup(self.filename_good), self.filename_result_good)
+        self.assertNotEqual(
+            medianamecleanup(self.filename_bad), self.filename_result_good)
+
 if __name__ == '__main__':
     theparser = argparse.ArgumentParser(
         prog='metadataeditor',
         description='Metadata Editor',
         epilog='by Andrew lathama Latham')
-    groupa = theparser.add_mutually_exclusive_group()
+    groupa = theparser.add_mutually_exclusive_group(required=True)
     groupa.add_argument(
         '-s', '--show', action='store_true', help='Show Metadata')
     groupa.add_argument(
         '-c', '--change', action='store_true', help='Change Metadata')
+    groupa.add_argument(
+        '-v', '--version', action='store_true', help='Show version')
+    groupa.add_argument(
+        '-t', '--runtests', action='store_true', help='Run Unit tests')
     groupb = theparser.add_mutually_exclusive_group()
     groupb.add_argument(
         '-f', '--filename', help='Single Filename')
     groupb.add_argument(
         '-d', '--directory', help='Directory')
-    theparser.add_argument(
-        '-v', '--version', action='store_true', help='Show version')
     args = theparser.parse_args()
     if args.show:
         if args.filename:
@@ -121,3 +145,6 @@ if __name__ == '__main__':
                 print('Directory not found')
     if args.version:
         print(VERSION)
+    if args.runtests:
+        del sys.argv[1:]
+        unittest.main(verbosity=2)
