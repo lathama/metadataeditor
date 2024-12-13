@@ -15,19 +15,22 @@ I needed to cleanup the metadata name on a large number of MP4 files.
 
 ```
 $ ./metadataeditor.py -h
-usage: metadataeditor [-h] (-s | -c) (-f FILENAME | -d DIRECTORY) [-v]
+usage: metadataeditor [-h] (-s | -c | -v | -t) [-f FILENAME [FILENAME ...] | -d DIRECTORY] [-V]
 
 Metadata Editor
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -s, --show            Show Metadata
   -c, --change          Change Metadata
-  -f FILENAME, --filename FILENAME
-                        Single Filename
+  -v, --version         Show version
+  -t, --runtests        Run Unit tests
+  -f FILENAME [FILENAME ...], --filename FILENAME [FILENAME ...]
+                        Filenames
   -d DIRECTORY, --directory DIRECTORY
                         Directory
-  -v, --version         Show version
+
+  -V, --verbose         Show more output
 
 by Andrew lathama Latham
 ```

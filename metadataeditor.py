@@ -18,18 +18,29 @@ import glob
 import os
 import sys
 import unittest
-sys.path.insert(0, 'mutagen-1.46.0-py3-none-any.whl')
+sys.path.insert(0, 'mutagen-1.47.0-py3-none-any.whl')
 import mutagen # pylint: disable=import-error,wrong-import-position
 
-VERSION = 'Metadata Editor v1.0'
 DEFAULT_TYPE = 'mp4'
-DEFAULT_TOOL = 'Metadata Editor v1.0'
+DEFAULT_TOOL = 'Metadata Editor v1.1'
+VERBOSE = False
+VERSION = 'Metadata Editor v1.1'
 
 def showmetadata(filename):
     """
     for a single file show the metadata found and print
     """
-    print(mutagen.File(filename))
+    print(filename)
+    fileinfo = mutagen.File(filename)
+    if '©nam' in fileinfo:
+        print('\tName: ' + str(fileinfo['©nam']))
+    if VERBOSE:
+        if '©ART' in fileinfo:
+            print('\tArtist: ' + str(fileinfo['©ART']))
+        if '©cmt' in fileinfo:
+            print('\tComment: ' + str(fileinfo['©cmt']))
+        if '©too' in fileinfo:
+            print('\tTool: ' + str(fileinfo['©too']))
 
 def showallmetadata(filepath):
     """
@@ -50,14 +61,15 @@ def changemetadata(filename):
     """
     Edit the metadata of a file
     """
-    print(filename + ' metadata before')
+    print('Change: metadata before')
     showmetadata(filename)
     fileholder = mutagen.mp4.MP4(filename)
+    fileholder['©ART'] = "na"
+    fileholder['©cmt'] = medianamecleanup(filename)
     fileholder['©nam'] = medianamecleanup(filename)
     fileholder['©too'] = DEFAULT_TOOL
     fileholder.save()
-    print(filename + ' saved')
-    print(filename + ' metadata after')
+    print('Change: metadata after')
     showmetadata(filename)
 
 def changeallmetadata(filepath):
@@ -115,16 +127,22 @@ if __name__ == '__main__':
         '-t', '--runtests', action='store_true', help='Run Unit tests')
     groupb = theparser.add_mutually_exclusive_group()
     groupb.add_argument(
-        '-f', '--filename', help='Single Filename')
+        '-f', '--filename', help='Filenames', nargs='+')
     groupb.add_argument(
         '-d', '--directory', help='Directory')
+    groupc = theparser.add_argument_group()
+    groupc.add_argument(
+        '-V', '--verbose', action='store_true', help='Show more output')
     args = theparser.parse_args()
+    if args.verbose:
+        VERBOSE = True
     if args.show:
         if args.filename:
-            if os.path.isfile(args.filename):
-                showmetadata(str(args.filename))
-            else:
-                print('File not found')
+            for entry in args.filename:
+                if os.path.isfile(entry):
+                    showmetadata(str(entry))
+                else:
+                    print('File not found')
         if args.directory:
             if os.path.isdir(args.directory):
                 showallmetadata(str(args.directory))
@@ -132,11 +150,11 @@ if __name__ == '__main__':
                 print('Directory not found')
     if args.change:
         if args.filename:
-            if os.path.isfile(args.filename):
-                changemetadata(str(args.filename))
-                #changemetadata('/media/media/media/Yellowstone_Bears.mp4')
-            else:
-                print('File not found')
+            for entry in args.filename:
+                if os.path.isfile(entry):
+                    changemetadata(str(entry))
+                else:
+                    print('File not found')
         if args.directory:
             if os.path.isdir(args.directory):
                 changeallmetadata(str(args.directory))
