@@ -85,7 +85,7 @@ def medianamecleanup(filename):
     Clean the path and extension along with underscores from filename
     """
     filepath = os.path.dirname(filename)
-    cleanedname = filename.removeprefix(filepath + '/')
+    cleanedname = filename.removeprefix(filepath + os.path.sep)
     cleanedname = cleanedname.replace('_', ' ')
     cleanedname = cleanedname.split('.')[0]
     return cleanedname
