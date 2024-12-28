@@ -33,6 +33,34 @@ options:
   -V, --verbose         Show more output
 
 by Andrew lathama Latham
+
+$ ./metadataeditor.py -V -s -f waterfall.MP4
+waterfall.MP4
+        Name: ['waterfall']
+        Artist: ['na']
+        Comment: ['waterfall']
+        Tool: ['Metadata Editor v1.1']
+$ cp waterfall.MP4 Water_Fall.mp4
+$ ./metadataeditor.py -V -s -f Water_Fall.mp4
+Water_Fall.mp4
+        Name: ['waterfall']
+        Artist: ['na']
+        Comment: ['waterfall']
+        Tool: ['Metadata Editor v1.1']
+$ ./metadataeditor.py -V -c -f Water_Fall.mp4
+Change: metadata before
+Water_Fall.mp4
+        Name: ['waterfall']
+        Artist: ['na']
+        Comment: ['waterfall']
+        Tool: ['Metadata Editor v1.1']
+Change: metadata after
+Water_Fall.mp4
+        Name: ['Water Fall']
+        Artist: ['na']
+        Comment: ['Water Fall']
+        Tool: ['Metadata Editor v1.1']
+$
 ```
 
 ## Requirements
