@@ -27,8 +27,7 @@ VERBOSE = False
 VERSION = 'Metadata Editor v1.1'
 
 def showmetadata(filename):
-    """
-    for a single file show the metadata found and print
+    """for a single file show the metadata found and print
     """
     print(filename)
     fileinfo = mutagen.File(filename)
@@ -43,23 +42,20 @@ def showmetadata(filename):
             print('\tTool: ' + str(fileinfo['©too']))
 
 def showallmetadata(filepath):
-    """
-    for a single file show the metadata found and print
+    """for a single file show the metadata found and print
     """
     allfiles = filematchlist(filepath)
     for filename in allfiles:
         showmetadata(filename)
 
 def filematchlist(filepath, filetype=DEFAULT_TYPE):
-    """
-    Return a list of files that match a type
+    """Return a list of files that match a type
     """
     filelist = glob.glob(filepath + '*.' + filetype )
     return filelist
 
 def changemetadata(filename):
-    """
-    Edit the metadata of a file
+    """Edit the metadata of a file
     """
     print('Change: metadata before')
     showmetadata(filename)
@@ -73,16 +69,14 @@ def changemetadata(filename):
     showmetadata(filename)
 
 def changeallmetadata(filepath):
-    """
-    Edit the metadata of all files in filepath
+    """Edit the metadata of all files in filepath
     """
     allfiles = filematchlist(filepath)
     for filename in allfiles:
         changemetadata(filename)
 
 def medianamecleanup(filename):
-    """
-    Clean the path and extension along with underscores from filename
+    """Clean the path and extension along with underscores from filename
     """
     filepath = os.path.dirname(filename)
     cleanedname = filename.removeprefix(filepath + os.path.sep)
@@ -91,8 +85,7 @@ def medianamecleanup(filename):
     return cleanedname
 
 class Testmetadataeditor(unittest.TestCase):
-    """
-    Unit testing just a few functions because reasons
+    """Unit testing just a few functions because reasons
     """
     def setUp(self):
         """

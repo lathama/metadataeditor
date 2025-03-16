@@ -85,3 +85,9 @@ Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
 
 1. https://github.com/quodlibet/mutagen
 
+
+## Thanks
+
+If you find this useful and want to say thanks I have an amazon wishlist
+
+- https://www.amazon.com/hz/wishlist/ls/1L2X1DMW98TCQ
