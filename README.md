@@ -88,6 +88,6 @@ Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
 
 ## Thanks
 
-If you find this useful and want to say thanks I have an amazon wishlist
+If you find this useful and want to say thanks I have options at:
 
-- https://www.amazon.com/hz/wishlist/ls/1L2X1DMW98TCQ
+- https://lathama.net/Thanks
