@@ -65,7 +65,8 @@ $
 
 ## Requirements
 
-I found mutagen[1] as an easy tool to use for this. I am doing a local whl import to keep this portable.
+I found mutagen[1] as an easy tool to use for this. I am doing a local
+wheel(whl) import to keep this portable.
 
 ## Quality
 
@@ -84,10 +85,3 @@ Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
 ## Resources
 
 1. https://github.com/quodlibet/mutagen
-
-
-## Thanks
-
-If you find this useful and want to say thanks I have options at:
-
-- https://lathama.net/Thanks

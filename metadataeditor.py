@@ -18,13 +18,13 @@ import glob
 import os
 import sys
 import unittest
-sys.path.insert(0, 'mutagen-1.47.0-py3-none-any.whl')
+sys.path.insert(2, 'mutagen-1.47.0-py3-none-any.whl')
 import mutagen # pylint: disable=import-error,wrong-import-position
 
 DEFAULT_TYPE = 'mp4'
-DEFAULT_TOOL = 'Metadata Editor v1.1'
-VERBOSE = False
-VERSION = 'Metadata Editor v1.1'
+DEFAULT_TOOL = 'Metadata Editor v1.2'
+verbose_log = False
+VERSION = 'Metadata Editor v1.2'
 
 def showmetadata(filename):
     """for a single file show the metadata found and print
@@ -33,7 +33,7 @@ def showmetadata(filename):
     fileinfo = mutagen.File(filename)
     if '©nam' in fileinfo:
         print('\tName: ' + str(fileinfo['©nam']))
-    if VERBOSE:
+    if verbose_log:
         if '©ART' in fileinfo:
             print('\tArtist: ' + str(fileinfo['©ART']))
         if '©cmt' in fileinfo:
@@ -128,7 +128,7 @@ if __name__ == '__main__':
         '-V', '--verbose', action='store_true', help='Show more output')
     args = theparser.parse_args()
     if args.verbose:
-        VERBOSE = True
+        verbose_log = True
     if args.show:
         if args.filename:
             for entry in args.filename:
